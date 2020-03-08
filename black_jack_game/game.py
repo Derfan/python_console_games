@@ -1,4 +1,5 @@
 from black_jack_game.player import Player
+from black_jack_game.croupier import Croupier
 from black_jack_game.deck import Deck
 
 
@@ -6,15 +7,9 @@ class BlackJack:
     def __init__(self):
         self.game_on = False
         self.deck = Deck()
-        self.croupier = Player('Croupier', 5000)
+        self.croupier = Croupier()
         self.player = Player('N/A')
         self.bank = 0
-
-    @staticmethod
-    def print_cards(person):
-        print('-' * 10)
-        print(f'{person.name} cards: {person.hand.cards}\nValue: {person.hand.sum_of_values}')
-        print('-' * 10)
 
     @staticmethod
     def replay_round():
@@ -66,7 +61,6 @@ class BlackJack:
     def give_cards(self, person, num):
         cards = self.deck.deal_cards(num)
         person.add_cards(cards)
-        self.print_cards(person)
 
     def initial_distribution(self):
         self.give_cards(self.croupier, 2)
@@ -83,6 +77,7 @@ class BlackJack:
                 break
 
     def croupier_move(self):
+        self.croupier.open_card()
         while self.croupier.hand.sum_of_values < 17:
             self.give_cards(self.croupier, 1)
 
@@ -106,10 +101,6 @@ class BlackJack:
         print(f'Croupier Budget ${self.croupier.budget}')
         print(f'{self.player.name} Budget ${self.player.budget}')
 
-    def clear_hands(self):
-        self.player.hand.clear()
-        self.croupier.hand.clear()
-
     def start_round(self):
         self.make_bets()
         self.initial_distribution()
@@ -126,7 +117,9 @@ class BlackJack:
         else:
             self.send_winnings(round_winner)
 
-        self.clear_hands()
+        self.player.hand.clear()
+        self.croupier.hand.clear()
+        self.croupier.close_card()
 
     def print_game_stat(self):
         print('$' * 50)

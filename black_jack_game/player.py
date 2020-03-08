@@ -12,6 +12,11 @@ class Player:
     def __str__(self):
         return f'Player name: {self.name}\nCurrent budget: ${self.budget}'
 
+    def print_cards(self):
+        print('-' * 10)
+        print(f'{self.name} cards: {self.hand.cards}\nValue: {self.hand.sum_of_values}')
+        print('-' * 10)
+
     def deposit(self, amount):
         self.budget += amount
 
@@ -23,3 +28,4 @@ class Player:
 
     def add_cards(self, cards):
         self.hand.add_card(cards)
+        self.print_cards()
