@@ -69,7 +69,7 @@ class BlackJack:
     def player_move(self):
         answer = ''
 
-        while answer != 'n' and self.player.hand.value < 21:
+        while answer != 'n' and self.player.hand.value <= 21:
             answer = input('Would you like to hit (y/n)? ')
             if answer == 'y':
                 self.give_cards(self.player, 1)
@@ -155,7 +155,3 @@ class BlackJack:
                 break
 
         self.print_game_stat()
-
-
-game = BlackJack()
-game.start()
