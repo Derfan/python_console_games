@@ -23,5 +23,5 @@ class Croupier(Player):
             print('Croupier:')
             print('\n*** HIDDEN ***')
             print(self.hand.cards[1])
-            print(f'Value: {self.hand.sum_of_values - self.hand.cards[0].value}')
+            print(f'Value: {self.hand.value - self.hand.cards[0].value}')
             print('-' * 10)
