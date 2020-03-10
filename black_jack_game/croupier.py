@@ -1,5 +1,4 @@
 from black_jack_game.player import Player
-from black_jack_game.card import Card
 
 
 class Croupier(Player):
@@ -15,13 +14,14 @@ class Croupier(Player):
 
     def print_cards(self):
         if self.card_is_open:
-            print('-' * 10)
-            print(f'Croupier cards: {self.hand.cards}\nValue: {self.hand.sum_of_values}')
-            print('-' * 10)
+            print('-' * 50)
+            print('Croupier:')
+            print(self.hand)
+            print('-' * 50)
         else:
-            cards = ['HIDDEN', self.hand.cards[1]]
-            value = self.hand.sum_of_values - Card(self.hand.cards[0]).value
-
             print('-' * 10)
-            print(f'Croupier cards: {cards}\nValue: {value}')
+            print('Croupier:')
+            print('\n*** HIDDEN ***')
+            print(self.hand.cards[1])
+            print(f'Value: {self.hand.sum_of_values - self.hand.cards[0].value}')
             print('-' * 10)

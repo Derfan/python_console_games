@@ -13,9 +13,10 @@ class Player:
         return f'Player name: {self.name}\nCurrent budget: ${self.budget}'
 
     def print_cards(self):
-        print('-' * 10)
-        print(f'{self.name} cards: {self.hand.cards}\nValue: {self.hand.sum_of_values}')
-        print('-' * 10)
+        print('-' * 50)
+        print(f'{self.name}:')
+        print(self.hand)
+        print('-' * 50)
 
     def deposit(self, amount):
         self.budget += amount
