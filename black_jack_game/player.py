@@ -2,9 +2,9 @@ from black_jack_game.hand import Hand
 
 
 class Player:
-    default_budget = 100
+    default_budget = 1000
 
-    def __init__(self, name, budget=default_budget):
+    def __init__(self, name: str, budget: int = default_budget):
         self.name = name
         self.budget = budget
         self.hand = Hand()

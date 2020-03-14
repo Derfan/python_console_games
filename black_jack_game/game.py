@@ -78,6 +78,7 @@ class BlackJack:
 
     def croupier_move(self):
         self.croupier.open_card()
+        self.croupier.print_cards()
         while self.croupier.hand.value < 17:
             self.give_cards(self.croupier, 1)
 
